@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Cidade implements Serializable{
@@ -28,6 +29,8 @@ public class Cidade implements Serializable{
 	private Integer id;
 	private String nome;
 	
+	
+	@JsonManagedReference	
 	@ManyToOne
 	@JoinColumn(name="estado_id")
 	private Estado estado;
