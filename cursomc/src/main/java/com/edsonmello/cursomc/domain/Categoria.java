@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 
@@ -27,7 +28,6 @@ public class Categoria implements Serializable {
 	private Integer id;	
 	
 	
-	@Length(min=5, max=80, message="O é obrigatório tamanho deve ser entre 5 e 80 caracteres.")
 	private String descricao;
 
 	@ManyToMany(mappedBy = "categorias")
