@@ -10,27 +10,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.validator.constraints.Length;
+
+
+
 @Entity
-public class Categoria implements Serializable{
-	
+public class Categoria implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;	
+	
+	
+	@Length(min=5, max=80, message="O é obrigatório tamanho deve ser entre 5 e 80 caracteres.")
 	private String descricao;
-	
-	
-	@ManyToMany(mappedBy="categorias")
+
+	@ManyToMany(mappedBy = "categorias")
 	private List<Produto> produtos = new ArrayList<>();
-	
-	public Categoria() {}
-	
-	
-	
+
+	public Categoria() {
+	}
+
 	public Categoria(Integer id, String descricao) {
 		super();
 		this.id = id;
@@ -40,30 +45,26 @@ public class Categoria implements Serializable{
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getDescricao() {
 		return descricao;
 	}
-	
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
+
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
 
-
-
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -72,7 +73,6 @@ public class Categoria implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -90,8 +90,5 @@ public class Categoria implements Serializable{
 			return false;
 		return true;
 	}
-
-
-
 
 }
